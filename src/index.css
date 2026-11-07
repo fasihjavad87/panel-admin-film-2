@@ -1,0 +1,393 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --spacing-app-sidebar-w: 18rem;
+  /* --spacing-app-sidebar-w-mobile: 3.75rem; */
+  --spacing-app-sidebar-w-mobile: 4.125rem;
+  --spacing-app-header-h: 4rem;
+  --color-custom-blue: #008fff;
+  --color-custom-blue-hover: rgb(0, 100, 178);
+  --color-custom-1: #72efdd;
+  --color-custom-2: #56cfe1;
+  --spacing-18px: 18px;
+  --spacing-22px: 22px;
+
+  --color-border-c: oklch(92.95% 0.0108 280.47);
+
+
+
+/* Shimmer - براقی متحرک */
+  --animate-shimmer: shimmer 2s infinite;
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(200%);
+    }
+  }
+
+  /* Gradient Shift - حرکت گرادیانت */
+  --animate-gradient-shift: gradient-shift 3s ease infinite;
+  @keyframes gradient-shift {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  /* Stripe Move - رگه‌های مورب متحرک */
+  --animate-stripe-move: stripe-move 1s linear infinite;
+  @keyframes stripe-move {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 30px 0;
+    }
+  }
+
+  /* Pulse Glow - درخشش نبضی */
+  --animate-pulse-glow: pulse-glow 2s ease-in-out infinite;
+  @keyframes pulse-glow {
+    0%,
+    100% {
+      opacity: 0.6;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
+
+
+
+}
+
+* {
+  font-family: Vazirmatn FD;
+}
+
+.header-adjusted {
+  width: calc(var(--spacing-app-sidebar-w) + 0.375rem);
+}
+
+body {
+  direction: rtl;
+  /* @apply bg-blue-100/50 ; */
+}
+
+/* استایل اسکرول بار برای مرورگرهای مدرن */
+.custom-scrollbar {
+  scrollbar-width: none;
+  scrollbar-color: #cbd5e1 #f1f5f9;
+}
+.scroll-content {
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 #f1f5f9;
+}
+.scrollbar-thin {
+  scrollbar-width: thin;
+}
+
+.scrollbar-none {
+  scrollbar-width: none;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* پنهان کردن اسکرول بار در حالت بسته (اختیاری) */
+@media (max-width: 768px) {
+  .sidebar-closed .custom-scrollbar {
+    overflow-y: visible;
+  }
+}
+
+@keyframes toast-progress {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+
+/* انیمیشن برای حذف toast */
+/* @keyframes toast-exit {
+  0% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    max-height: 120px;
+    margin-bottom: 12px;
+    padding: 1rem 0.625rem;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(100%) scale(0.9);
+    max-height: 0;
+    margin-bottom: 0;
+    padding: 0 0.625rem;
+  }
+} */
+
+/* .toast-exit-animation {
+  animation: toast-exit 0.3s ease-in forwards;
+} */
+
+
+@keyframes toast-exit-right {
+  0% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    max-height: 120px;
+    margin-bottom: 12px;
+    padding: 1rem 0.625rem;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(100%) scale(0.9);
+    max-height: 0;
+    margin-bottom: 0;
+    padding: 0 0.625rem;
+  }
+}
+
+/* خروج به چپ */
+@keyframes toast-exit-left {
+  0% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    max-height: 120px;
+    margin-bottom: 12px;
+    padding: 1rem 0.625rem;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-100%) scale(0.9);
+    max-height: 0;
+    margin-bottom: 0;
+    padding: 0 0.625rem;
+  }
+}
+
+/* خروج از وسط (بدون جابجایی افقی، فقط محو و جمع شدن) */
+@keyframes toast-exit-center {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+    max-height: 120px;
+    margin-bottom: 12px;
+    padding: 1rem 0.625rem;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.9);
+    max-height: 0;
+    margin-bottom: 0;
+    padding: 0 0.625rem;
+  }
+}
+
+
+
+
+
+
+
+.r-dir {
+  direction: rtl;
+}
+.l-dir {
+  direction: ltr;
+}
+
+@keyframes slideInFromMiddle {
+  0% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutToMiddle {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+}
+
+.slide-in {
+  animation: slideInFromMiddle 0.3s cubic-bezier(0.34, 1.2, 0.64, 1) forwards !important;
+}
+
+.slide-out {
+  animation: slideOutToMiddle 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards !important;
+}
+
+@keyframes fadeBackdropIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeBackdropOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.backdrop-in {
+  animation: fadeBackdropIn 0.2s ease forwards;
+}
+
+.backdrop-out {
+  animation: fadeBackdropOut 0.2s ease forwards;
+}
+
+
+/* =========================================
+   DONUT COUNTRY
+   Premium Animation
+========================================= */
+
+.donut-country-main {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: donutCountryBreathing 5s ease-in-out infinite;
+  animation-delay: var(--segment-delay);
+  will-change: opacity, filter;
+}
+
+
+/* =========================================
+   SOFT AURA
+========================================= */
+
+.donut-country-soft-glow {
+  opacity: 0.08;
+  filter: blur(4px);
+  animation: donutCountryAura 5s ease-in-out infinite;
+  animation-delay: var(--segment-delay);
+  will-change: opacity, stroke-width;
+}
+
+
+/* =========================================
+   MAIN BREATHING
+========================================= */
+
+@keyframes donutCountryBreathing {
+  0%, 100% { opacity: 1; filter: brightness(1); }
+  18% { opacity: 0.96; filter: brightness(1.02); }
+  35% { opacity: 1; filter: brightness(1.06); }
+  52% { opacity: 0.94; filter: brightness(1); }
+  70% { opacity: 1; filter: brightness(1.04); }
+}
+
+
+/* =========================================
+   AURA / GLOW
+========================================= */
+
+@keyframes donutCountryAura {
+  0%, 100% { opacity: 0.04; stroke-width: 15px; }
+  20% { opacity: 0.08; stroke-width: 16px; }
+  38% { opacity: 0.18; stroke-width: 18px; }
+  50% { opacity: 0.10; stroke-width: 16px; }
+  65% { opacity: 0.20; stroke-width: 18px; }
+  82% { opacity: 0.07; stroke-width: 15px; }
+}
+
+
+/* =========================================
+   ✨ ORBITING LIGHTS
+   همه با یه سرعت، فاصله ثابت
+========================================= */
+
+.donut-country-orbit {
+  transform-box: fill-box;
+  transform-origin: center;
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.9));
+  animation-name: donutOrbit, donutPulse, donutFade;
+  animation-duration:
+    var(--orbit-duration),
+    calc(var(--orbit-duration) * 0.5),
+    calc(var(--orbit-duration) * 0.5);
+  animation-timing-function: linear, ease-in-out, ease-in-out;
+  animation-iteration-count: infinite, infinite, infinite;
+  animation-delay: var(--orbit-delay), var(--orbit-delay), var(--orbit-delay);
+  animation-fill-mode: both;
+  will-change: stroke-dashoffset, opacity, stroke-width;
+}
+
+
+/* ---------- چرخش پیوسته دور دایره ---------- */
+
+@keyframes donutOrbit {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -376.99; /* = -2πr با r=60 */
+  }
+}
+
+
+/* ---------- نبض: خط کوچک و بزرگ می‌شود ---------- */
+
+@keyframes donutPulse {
+  0%, 100% {
+    stroke-width: 1.2;
+  }
+  50% {
+    stroke-width: 3.8;
+  }
+}
+
+
+/* ---------- پررنگ و کم‌رنگ شدن متناوب ---------- */
+
+@keyframes donutFade {
+  0%, 100% {
+    opacity: var(--orbit-min-opacity);
+  }
+  50% {
+    opacity: var(--orbit-max-opacity);
+  }
+}
